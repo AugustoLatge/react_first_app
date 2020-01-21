@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
+import Aux from "../../../hoc/Auxilliary";
+import withClass from "../../../hoc/withClass";
 import classes from "./Person.css";
-import Aux from '../../../hoc/Auxilliary';
 
 class Person extends Component {
   render() {
     console.log("[Person.js] rendering...");
     return (
-      // <div className={classes.Person}>
       <Aux>
         <p key="i1" onClick={this.props.click}>
           I'm {this.props.name} and I am {this.props.age} years old!
@@ -20,9 +21,15 @@ class Person extends Component {
           value={this.props.name}
         />
       </Aux>
-      // </div>
     );
   }
 }
 
-export default Person;
+Person.PropTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
+
+export default withClass(Person, classes.Person);
